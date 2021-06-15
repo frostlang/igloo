@@ -1,0 +1,56 @@
+/*
+James Clarke
+2021
+*/
+
+import("args")
+import("io")
+import("http")
+import("cache")
+import("json")
+
+package_cache_path = FROST_HOME.join("/igloo/package_cache.json")
+package_cache := json_open(package_cache_path)
+
+
+
+help : fn {
+    println("""
+        igloo version a_0_0_1
+        -h -help   =>   help
+        """)
+}
+
+// 
+// igloo get example_package
+//
+get : fn (command : ArgParser.Command){
+
+    package := command.args[0]
+
+    // first check if the package is in the cache
+    if package_cache.contains(package){
+
+    }else{
+        
+    }
+}
+
+//
+// igloo upload /example/package/package.yaml
+//
+upload : fn (command : ArgParser.Command){
+
+}
+
+main : pub fn {
+
+    arg_parser := ArgParser(args)
+
+    arg_parser
+        .option({"-h","help"}).exec(help)
+        .option({"-g", "get"}).arg(string).exec(get)
+        .option({"-u", "upload"}).arg(string).exec(upload)
+
+
+}
